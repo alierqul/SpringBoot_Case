@@ -35,8 +35,7 @@ public class CompanyController {
     @Operation(summary = "Kayıtlı şirket Silme işleminin yapıldığı method. Uyarı İlişkili personel varsa silmeye izin vermicektir. Silmeden önce personelleri farklı bir şirkete taşımanız gerekir.")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteCompany(@PathVariable long id){
-        companyService.deleteCompany(id);
-        return ResponseEntity.ok("Deleted.");
+        return ResponseEntity.ok(companyService.deleteCompany(id));
     }
 
     @Operation(summary = "id ye göre şirket bilgilerini çekmek için kullanılır.")

@@ -34,8 +34,8 @@ public class EmployeeController {
     @Operation(summary = "Personel silmek için  yapılan method. Personel id si verilen kayıt varsa DB den silinecektir.")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable long id){
-        employeeService.deleteEmployee(id);
-        return ResponseEntity.ok("Deleted.");
+
+        return ResponseEntity.ok(employeeService.deleteEmployee(id));
     }
     @Operation(summary = "id'si bilinen personelin bilgilerini çağıran method.")
     @GetMapping("/{id}")

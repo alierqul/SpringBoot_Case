@@ -20,8 +20,8 @@ public class EmployeeService {
     private final CompanyService companyService;
 
     public Employee getEmployeeById(long id){
-        Optional<Employee> inDB=Optional.of(employeeRepository.getById(id));
-        if(inDB.isPresent()){
+        Optional<Employee> inDB=employeeRepository.findById(id);
+        if(!inDB.isPresent()){
             throw new EntityNotFoundException("Employee don't find: "+id);
         }
         return inDB.get();

@@ -1,5 +1,6 @@
 package com.enoca.app.service;
 
+
 import com.enoca.app.dto.request.DoCreateCompanyRequestDto;
 import com.enoca.app.dto.request.DoUpdateCompanyRequestDto;
 import com.enoca.app.dto.request.DoUpdateEmployeeRequestDto;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -23,10 +25,10 @@ public class CompanyService {
     private final CompanyRepository companyRepository;
     private final EmployeeRepository employeeRepository;
 
+
     public Company getCompanyById(long id){
-        log.debug("ALi : getCompanyById :"+id);
-        Optional<Company> inDB=Optional.of(companyRepository.getById(id));
-        if(inDB.isPresent()){
+        Optional<Company> inDB=companyRepository.findById(id);
+        if(!inDB.isPresent()){
             throw new EntityNotFoundException("Company don't find: "+id);
         }
         return inDB.get();
@@ -60,10 +62,11 @@ public class CompanyService {
 
     public String addEmployee(long companyID, long employeeID) {
        Company inDB=getCompanyById(companyID);
-       Employee employee= employeeRepository.getById(employeeID);
-       if(employee==null){
+       Optional<Employee> employeeOpt= employeeRepository.findById(employeeID);
+       if(!employeeOpt.isPresent()){
            throw new EntityNotFoundException("Employee not Found.");
        }
+        Employee employee=employeeOpt.get();
         employee.setCompany(inDB);
        employeeRepository.save(employee);
         return "add to Employee List";
