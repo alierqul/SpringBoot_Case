@@ -43,7 +43,7 @@ public class EmployeeService {
        inDB.setLastName(employee.getLastName());
        inDB.setEmail(employee.getEmail());
        inDB.setPhone(employee.getPhone());
-       if(employee.getCompanyId()!=null || employee.getCompanyId()>0){
+       if(employee.getCompanyId()!=null && employee.getCompanyId()>0){
            inDB.setCompany(companyService.getCompanyById(employee.getCompanyId()));
        }
 
