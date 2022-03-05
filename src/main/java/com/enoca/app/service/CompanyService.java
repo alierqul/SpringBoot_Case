@@ -26,7 +26,7 @@ public class CompanyService {
     public Company getCompanyById(long id){
         log.debug("ALi : getCompanyById :"+id);
         Optional<Company> inDB=Optional.of(companyRepository.getById(id));
-        if(!inDB.isPresent()){
+        if(inDB.isPresent()){
             throw new EntityNotFoundException("Company don't find: "+id);
         }
         return inDB.get();

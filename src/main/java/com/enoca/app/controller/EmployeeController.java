@@ -18,16 +18,19 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EmployeeController {
     private final EmployeeService employeeService;
+
     @Operation(summary = "Yeni Personel eklemek için yapılan method.")
     @PostMapping("/save")
     public ResponseEntity<GetEmployeeResponseDto> createEmployee(@RequestBody @Valid DoCreateEmployeeRequestDto employeeDto){
         return ResponseEntity.ok(new GetEmployeeResponseDto(employeeService.createEmployee(employeeDto)));
     }
+
     @Operation(summary = "Personel güncellemek için  yapılan method. Personel id zorunlu alandır.")
     @PutMapping("/update")
     public ResponseEntity<GetEmployeeResponseDto> updateEmployee(@RequestBody @Valid DoUpdateEmployeeRequestDto employeeDto){
         return ResponseEntity.ok(new GetEmployeeResponseDto(employeeService.updateEmployee(employeeDto)));
     }
+
     @Operation(summary = "Personel silmek için  yapılan method. Personel id si verilen kayıt varsa DB den silinecektir.")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable long id){
@@ -39,6 +42,7 @@ public class EmployeeController {
     public ResponseEntity<GetEmployeeResponseDto> getEmployee(@PathVariable long id){
         return ResponseEntity.ok(new GetEmployeeResponseDto(employeeService.getEmployeeById(id)));
     }
+
     @Operation(summary = "Tüm Personel Kayıtlarını getiren method.")
     @GetMapping("/all")
     public ResponseEntity<List<GetEmployeeResponseDto>> getAllEmployee(){

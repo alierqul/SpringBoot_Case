@@ -6,6 +6,7 @@ import com.enoca.app.repository.EmployeeRepository;
 import com.enoca.app.repository.entity.Company;
 import com.enoca.app.repository.entity.Employee;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -20,7 +21,7 @@ public class EmployeeService {
 
     public Employee getEmployeeById(long id){
         Optional<Employee> inDB=Optional.of(employeeRepository.getById(id));
-        if(!inDB.isPresent()){
+        if(inDB.isPresent()){
             throw new EntityNotFoundException("Employee don't find: "+id);
         }
         return inDB.get();
