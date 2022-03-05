@@ -32,10 +32,11 @@ public class OpenApiConfig {
                                 "kaynak kodu ile iletilmesi gerekmektedir."
 
 
+
                         )
                         .termsOfService("terms")
                         .contact(new Contact().email("alierqul@hotmail.com"))
-                        .license(new License().name("GNU"))
+                        .license(new License().name("Github Linki").url("https://github.com/alierqul/SpringBoot_Case"))
                         .version("1.0")
                 );
     }
